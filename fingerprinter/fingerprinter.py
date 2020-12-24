@@ -1,7 +1,7 @@
 """Main module."""
 
 import collections
-from typing import List
+from typing import Generator
 
 import bs4
 from bs4 import BeautifulSoup
@@ -24,7 +24,7 @@ class Fingerprinter:
         self.fingerprint = f"{ids_top3}+{classes_top3}+{tag_count}"
 
     @staticmethod
-    def classes(soup: BeautifulSoup) -> List[str]:
+    def classes(soup: BeautifulSoup) -> Generator[str, None, None]:
         """A generator over the classes of all tags."""
         for t in soup.descendants:
             try:
@@ -33,11 +33,10 @@ class Fingerprinter:
                 continue
 
     @staticmethod
-    def ids(soup: BeautifulSoup) -> List[str]:
+    def ids(soup: BeautifulSoup) -> Generator[str, None, None]:
         """A generator over the IDs of all tags."""
         for t in soup.descendants:
             try:
                 yield t['id']
             except (KeyError, TypeError):
                 continue
-
