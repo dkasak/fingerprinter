@@ -1,4 +1,4 @@
-"""Console script for fingerprinter."""
+"""Fingerprint HTML files."""
 import sys
 
 import click
@@ -9,7 +9,7 @@ from fingerprinter.fingerprinter import Fingerprinter
 @click.command()
 @click.argument("files", required=False, nargs=-1)
 def main(files):
-    """Console script for fingerprinter."""
+    """Fingerprint HTML files."""
     if files:
         for file in files:
             contents = open(file, "r")
